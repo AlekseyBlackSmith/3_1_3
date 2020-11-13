@@ -13,7 +13,7 @@ public class Task426 {
     public static void main(String[] args) {
 
     }
-
+    //убери коментарии
     public boolean getCreditForClient(BankWorker bankWorker, BankClient bankClient) throws Exception{
         //try{
             return bankWorker.checkClientForCredit(bankClient);

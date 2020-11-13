@@ -18,17 +18,22 @@ public class Task427 {
 
     public static void main(String[] args) {
 
-        Car.drive();
+        try (Car car = new Car()) {
+            Car.drive();
+        } catch (RuntimeException e) {
+
+        }
 
     }
 
-    public static class Car{
+    public static class Car implements AutoCloseable {
 
-        public static void drive(){
-            System.out.println("Машина поехала");
+        public static void drive() {
+            System.out.println("Машина поехала.");
         }
 
-        public void close(){
+        @Override
+        public void close() {
             System.out.println("Машина закрывается...");
         }
     }

@@ -5,7 +5,7 @@ package JavaCore;
 public class test {
     public static void main(String[] args) {
 
-
+        final int[] i =new int[3];
        /* Object i = Integer.valueOf(42);
         String s = (String)i;*/
 

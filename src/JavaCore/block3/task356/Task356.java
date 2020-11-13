@@ -52,6 +52,9 @@ public class Task356 {
                 builder.append((char)i);
             }
             return builder.toString();
+
+
+
         }
 
     }
