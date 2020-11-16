@@ -47,14 +47,7 @@ public class Task356 {
 
         @Override
         public String toString() {
-            StringBuilder builder = new StringBuilder();
-            for (byte i : array){
-                builder.append((char)i);
-            }
-            return builder.toString();
-
-
-
+            return new String(this.array);
         }
 
     }
