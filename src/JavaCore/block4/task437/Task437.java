@@ -1,8 +1,5 @@
 package JavaCore.block4.task437;
 
-import JavaCore.block4.task428.Task428;
-
-import java.util.Arrays;
 import java.util.logging.*;
 
 /**
@@ -27,44 +24,44 @@ public class Task437 {
     public static final String BANNED_SUBSTANCE = "banned substance";
 
     public static void main(String[] args) {
-        Logger logger = Logger.getLogger(Task428.class.getName());
-        logger.setLevel(Level.INFO);
-        Inspector inspector = new Inspector();
-        Spy spy = new Spy(logger);
-        Thief thief = new Thief(10000);
-        MailService variousWorkers[] = new MailService[]{spy, thief, inspector};
-        UntrustworthyMailWorker worker = new UntrustworthyMailWorker(variousWorkers);
-        Package pack1 = new Package("ВВЖ", 32);
-        Package pack2 = new Package("рпакетный двигатель ", 2500000);
-        Package pack3 = new Package("stones", 1000);
-        Package pack4 = new Package("banned substance", 99);
-        Package pack5 = new Package("tiny bomb", 9000);
-        AbstractSendable correspondence[] = {
-                new MailMessage("Oxxxymiron", "Гнойный", "Я здесь чисто по фану, поглумиться над слабым\n" +
-                        "Ты же вылез из мамы под мой дисс на Бабана...."),
-                new MailMessage("Гнойный", "Oxxxymiron", "....Что? Так болел за Россию, что на нервах терял ганглии.\n" +
-                        "Но когда тут проходили митинги, где ты сидел? В Англии!...."),
-                new MailMessage("Жриновский", AUSTIN_POWERS, "Бери пацанов, и несите меня к воде."),
-                new MailMessage(AUSTIN_POWERS, "Пацаны", "Го, потаскаем Вольфовича как Клеопатру"),
-                new MailPackage("берег", "море", pack1),
-                new MailMessage("NASA", AUSTIN_POWERS, "Найди в России ракетные двигатели и лунные stones"),
-                new MailPackage(AUSTIN_POWERS, "NASA", pack2),
-                new MailPackage(AUSTIN_POWERS, "NASA", pack3),
-                new MailPackage("Китай", "КНДР", pack4),
-                new MailPackage(AUSTIN_POWERS, "ИГИЛ (запрещенная группировка", pack5),
-                new MailMessage(AUSTIN_POWERS, "Психиатр", "Помогите"),
-        };
-        Arrays.stream(correspondence).forEach(parcell -> {
-            try {
-                worker.processMail(parcell);
-            } catch (StolenPackageException e) {
-                logger.log(Level.WARNING, "Inspector found stolen package: " + e);
-            } catch (IllegalPackageException e) {
-                logger.log(Level.WARNING, "Inspector found illegal package: " + e);
-            }
-        });
-
-        System.out.println(thief.getStolenValue());
+//        Logger logger = Logger.getLogger(Task428.class.getName());
+//        logger.setLevel(Level.INFO);
+//        Inspector inspector = new Inspector();
+//        Spy spy = new Spy(logger);
+//        Thief thief = new Thief(10000);
+//        MailService variousWorkers[] = new MailService[]{spy, thief, inspector};
+//        UntrustworthyMailWorker worker = new UntrustworthyMailWorker(variousWorkers);
+//        Package pack1 = new Package("ВВЖ", 32);
+//        Package pack2 = new Package("рпакетный двигатель ", 2500000);
+//        Package pack3 = new Package("stones", 1000);
+//        Package pack4 = new Package("banned substance", 99);
+//        Package pack5 = new Package("tiny bomb", 9000);
+//        AbstractSendable correspondence[] = {
+//                new MailMessage("Oxxxymiron", "Гнойный", "Я здесь чисто по фану, поглумиться над слабым\n" +
+//                        "Ты же вылез из мамы под мой дисс на Бабана...."),
+//                new MailMessage("Гнойный", "Oxxxymiron", "....Что? Так болел за Россию, что на нервах терял ганглии.\n" +
+//                        "Но когда тут проходили митинги, где ты сидел? В Англии!...."),
+//                new MailMessage("Жриновский", AUSTIN_POWERS, "Бери пацанов, и несите меня к воде."),
+//                new MailMessage(AUSTIN_POWERS, "Пацаны", "Го, потаскаем Вольфовича как Клеопатру"),
+//                new MailPackage("берег", "море", pack1),
+//                new MailMessage("NASA", AUSTIN_POWERS, "Найди в России ракетные двигатели и лунные stones"),
+//                new MailPackage(AUSTIN_POWERS, "NASA", pack2),
+//                new MailPackage(AUSTIN_POWERS, "NASA", pack3),
+//                new MailPackage("Китай", "КНДР", pack4),
+//                new MailPackage(AUSTIN_POWERS, "ИГИЛ (запрещенная группировка", pack5),
+//                new MailMessage(AUSTIN_POWERS, "Психиатр", "Помогите"),
+//        };
+//        Arrays.stream(correspondence).forEach(parcell -> {
+//            try {
+//                worker.processMail(parcell);
+//            } catch (StolenPackageException e) {
+//                logger.log(Level.WARNING, "Inspector found stolen package: " + e);
+//            } catch (IllegalPackageException e) {
+//                logger.log(Level.WARNING, "Inspector found illegal package: " + e);
+//            }
+//        });
+//
+//        System.out.println(thief.getStolenValue());
     }
 
 
@@ -270,11 +267,11 @@ public class Task437 {
             if (mail instanceof MailMessage) {
                 MailMessage message = (MailMessage) mail;
                 if (message.getFrom().equals(AUSTIN_POWERS) || message.getTo().equals(AUSTIN_POWERS)) {
-                    logger.log(Level.WARNING, "Detected target mail correspondence: from " +
-                            message.getFrom() + " to " + message.getTo() + " \"" + message.getMessage() + "\"");
+                    logger.log(Level.WARNING, "Detected target mail correspondence: from {0} to {1} \"{2}\"",
+                    new Object[] {message.getFrom(), message.getTo(), message.getMessage()});
                 } else {
-                    logger.log(Level.INFO, "Usual correspondence: from " +
-                            message.getFrom() + " to " + message.getTo());
+                    logger.log(Level.INFO, "Usual correspondence: from {0} to {1}",
+                            new Object[] {message.getFrom(), message.getTo()});
                 }
             }
             return mail;

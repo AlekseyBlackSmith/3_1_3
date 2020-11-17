@@ -1,17 +1,22 @@
 package JavaCore;
 
-
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
+import java.io.File;
+import java.io.IOException;
+import java.util.logging.*;
 
 public class test {
 
-    private static final Logger logger = Logger.getLogger("JavaCore.test");
 
-    public static void main(String[] args) {
-        logger.log(Level.INFO, "testLogger");
+    public static void main(String[] args) throws IOException {
+        File f = new File("ksdnfkjsbd");
+        System.out.println(f.isAbsolute());
+
+
 
     }
+
+
+
+
 
 }
