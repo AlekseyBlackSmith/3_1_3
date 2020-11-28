@@ -1,5 +1,6 @@
 package JavaCore.block6.task6113;
 
+
 import java.util.Arrays;
 
 /**
@@ -32,43 +33,83 @@ public class Task6113 {
         test.add("7");
         test.add("8");
         test.add("9");
+        test.add("10");
+
+        System.out.println(test.get(10));
+        test.remove(10);
+        test.add("11");
         System.out.println(test.get(0));
-        System.out.printf("В массиве %d элементов\n", test.array.length);
+        test.remove(0);
+        System.out.println(test.get(0));
+        test.remove(6);
+        test.remove(10); // за пределами массива
+        System.out.println(test.get(6));
+        System.out.printf("текущий индекс curentElement %d\n", test.currentElement);
+        System.out.println(test.get(10));
+//        test.add("12");
+//        test.add("13");
+//        test.add("14");
+//        test.add("15");
+//        test.add("16");
+//        test.add("17");
+//        test.remove(1);
+//        test.remove(20);
+//        test.add("18");
+//        test.add("19");
+//        test.add("20");
+//        test.add("21");
+//        test.add("22");
+        System.out.println("------------test------------");
+        System.out.printf("В массиве %d ячеек\n", test.array.length);
+        System.out.printf("В массиве %d элементов\n",test.currentElement+1);
         for (int i = 0; i < test.array.length; i++) {
-            System.out.println("элемент с индексом "+test.array[i]);
+            System.out.printf("элемент с индексом %d, со значением %s\n",i, test.array[i]);
         }
 
     }
 
     public static class DynamicArray<T> {
         private Object[] array;
+        private int currentElement;
 
 
+        //создание
         public DynamicArray() {
-            array = new Object[0];
+            array = new Object[10];
+            currentElement = -1;
         }
+
 
         //добавление в массив
         public void add(T el) {
-            Object[] newArray = Arrays.copyOf(array, array.length + 1);
-            newArray[newArray.length - 1] = (Object) el;
-            array = newArray;
+            currentElement++;
+            if (currentElement == array.length) {
+                array = Arrays.copyOf(array, array.length + 5);
+                //System.out.printf("произошло расширение массива до %d ячеек\n", array.length);
+            }
+            array[currentElement] = (Object) el;
+            //System.out.printf("Добавлен элемент с индексом %d и значением %s\n", currentElement, el);
         }
 
         //удаление из массива
         public void remove(int index) {
-            Object[] first = Arrays.copyOfRange(array, 0, index);
-            Object[] second = Arrays.copyOfRange(array, index + 1, array.length);
-
-            Object[] newArray = new Object[array.length - 1];
-            System.arraycopy(first, 0, newArray, 0, first.length);
-            System.arraycopy(second, 0, newArray,first.length, second.length);
-            array = newArray;
+            if (index >= 0 && index <= currentElement) {
+                System.arraycopy(array, index + 1, array, index, array.length - 1 - index);
+                array[array.length-1] = null;
+                currentElement--;
+                //System.out.println("Удален элемент с индексом "+index);
+            } else {
+                System.out.println("неверно указаан индекс элемента для удаления");
+            }
         }
 
         //извлечение из массива по индексу
         public T get(int index) {
-            return (T) array[index];
+            if (index >= 0 && index <= currentElement) {
+                return (T) array[index];
+            } else {
+                return null;
+            }
         }
     }
 }

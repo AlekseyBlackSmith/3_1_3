@@ -1,7 +1,6 @@
 package JavaCore.block6.task6112;
 
 import java.util.Objects;
-import java.util.Optional;
 
 /**
  * Реализуйте generic-класс Pair, похожий на Optional, но содержащий пару элементов разных типов и не запрещающий элементам принимать значение null.
@@ -20,6 +19,7 @@ public class Task6112 {
         Pair<Integer, String> pair2 = Pair.of(1, "hello");
         boolean mustBeTrue = pair.equals(pair2); // true!
         boolean mustAlsoBeTrue = pair.hashCode() == pair2.hashCode(); // true!
+
     }
 
     public static class Pair<T, X> {

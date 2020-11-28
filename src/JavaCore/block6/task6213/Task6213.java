@@ -1,5 +1,6 @@
 package JavaCore.block6.task6213;
 
+import java.util.ArrayDeque;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -34,22 +35,18 @@ public class Task6213 {
 
     }
 
+
     public static <T> Set<T> symmetricDifference(Set<? extends T> set1, Set<? extends T> set2) {
 
-        Set<T> result = new HashSet<>();
+        Set<T> result = new HashSet<>(set1);
+        result.addAll(set2);
 
-        for (T element : set1) {
-            if (!set2.contains(element)) {
-                result.add(element);
-            }
-        }
+        Set<T> forDeliting = new HashSet<>(set1);
+        forDeliting.retainAll(set2);
 
-        for (T element : set2) {
-            if (!set1.contains(element)) {
-                result.add(element);
-            }
-        }
+        result.removeAll(forDeliting);
 
         return result;
     }
+
 }

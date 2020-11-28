@@ -26,16 +26,43 @@ import java.util.*;
 public class Task6214 {
 // 1 2 3 4 5 6 7 8 9 10
 
-    public static void main(String[] args) throws IOException {
-        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-        String[] array = reader.readLine().split(" ");
-        reader.close();
-        LinkedList<Integer> list = new LinkedList<>();
-        for (int i = 1; i < array.length; i += 2) {
-            list.add(Integer.parseInt(array[i]));
+    public static void main(String[] args) {
+//        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+//        String[] array = reader.readLine().split(" ");
+//        reader.close();
+//        LinkedList<Integer> list = new LinkedList<>();
+//        for (int i = 1; i < array.length; i += 2) {
+//            list.add(Integer.parseInt(array[i]));
+//        }
+//        Collections.reverse(list);
+//        list.forEach(number -> System.out.printf("%d ", number));
+
+
+        Scanner scanToString = new Scanner(System.in);
+        String str = scanToString.nextLine();
+        scanToString.close();
+
+        Scanner scanner = new Scanner(str);
+        ArrayDeque<Integer> array = new ArrayDeque<>();
+        int count = 0;
+
+        while (scanner.hasNext()) {
+            count++;
+            if (count % 2 == 0) {
+                array.offerFirst(scanner.nextInt());
+            } else {
+                scanner.nextInt();
+            }
         }
-        Collections.reverse(list);
-        list.forEach(number -> System.out.printf("%d ", number));
+        scanner.close();
+
+        for (Integer i : array) {
+            System.out.printf("%d ", i);
+        }
+
+
+
+
     }
 
 }
