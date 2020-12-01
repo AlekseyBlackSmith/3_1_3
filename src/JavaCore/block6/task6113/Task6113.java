@@ -46,19 +46,27 @@ public class Task6113 {
         System.out.println(test.get(6));
         System.out.printf("текущий индекс curentElement %d\n", test.currentElement);
         System.out.println(test.get(10));
-//        test.add("12");
-//        test.add("13");
-//        test.add("14");
-//        test.add("15");
-//        test.add("16");
-//        test.add("17");
-//        test.remove(1);
-//        test.remove(20);
-//        test.add("18");
-//        test.add("19");
-//        test.add("20");
-//        test.add("21");
-//        test.add("22");
+        test.add("12");
+        test.add("13");
+        test.add("14");
+        test.add("15");
+        test.add("16");
+        test.add("17");
+        test.remove(1);
+        test.remove(20);
+        test.add("18");
+        test.add("19");
+        test.add("20");
+        test.add("21");
+        test.add("22");
+        test.add("23");
+        test.add("24");
+        test.add("25");
+        test.add("26");
+        test.add("27");
+        test.add("28");
+        test.add("29");
+        test.add("30");
         System.out.println("------------test------------");
         System.out.printf("В массиве %d ячеек\n", test.array.length);
         System.out.printf("В массиве %d элементов\n",test.currentElement+1);
@@ -85,10 +93,10 @@ public class Task6113 {
             currentElement++;
             if (currentElement == array.length) {
                 array = Arrays.copyOf(array, array.length + 5);
-                //System.out.printf("произошло расширение массива до %d ячеек\n", array.length);
+                System.out.printf("произошло расширение массива до %d ячеек\n", array.length);
             }
             array[currentElement] = (Object) el;
-            //System.out.printf("Добавлен элемент с индексом %d и значением %s\n", currentElement, el);
+            System.out.printf("Добавлен элемент с индексом %d и значением %s\n", currentElement, el);
         }
 
         //удаление из массива
@@ -97,7 +105,7 @@ public class Task6113 {
                 System.arraycopy(array, index + 1, array, index, array.length - 1 - index);
                 array[array.length-1] = null;
                 currentElement--;
-                //System.out.println("Удален элемент с индексом "+index);
+                System.out.println("Удален элемент с индексом "+index);
             } else {
                 System.out.println("неверно указаан индекс элемента для удаления");
             }
