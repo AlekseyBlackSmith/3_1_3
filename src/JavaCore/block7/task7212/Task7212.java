@@ -1,5 +1,8 @@
 package JavaCore.block7.task7212;
 
+import java.util.*;
+
+
 /**
  * Напишите программу, читающую из System.in текст в кодировке UTF-8, подсчитывающую в нем частоту появления слов,
  * и в конце выводящую 10 наиболее часто встречающихся слов.
@@ -53,4 +56,25 @@ package JavaCore.block7.task7212;
  */
 
 public class Task7212 {
+    public static void main(String[] args) {
+
+        Scanner scanner = new Scanner(System.in, "UTF-8").useDelimiter("[^\\p{L}\\p{Digit}]+");
+        Map<String, Integer> words = new HashMap<>();
+
+        scanner.forEachRemaining(w -> words.merge(w.toLowerCase(), 1, (a, b) -> a + b));
+
+        words.entrySet().stream().sorted(function()).limit(10)
+        .map(Map.Entry::getKey).forEach(System.out::println);
+
+        }
+
+    private static Comparator<Map.Entry<String, Integer>> function() {
+        return Comparator.<Map.Entry<String, Integer>>comparingInt(Map.Entry::getValue).reversed()
+            .thenComparing(Map.Entry::getKey);
+    }
 }
+
+
+
+
+
