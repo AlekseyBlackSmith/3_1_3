@@ -1,9 +1,5 @@
 package JavaCore.block6.task6214;
 
-
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
 import java.util.*;
 
 /**
@@ -27,16 +23,6 @@ public class Task6214 {
 // 1 2 3 4 5 6 7 8 9 10
 
     public static void main(String[] args) {
-//        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-//        String[] array = reader.readLine().split(" ");
-//        reader.close();
-//        LinkedList<Integer> list = new LinkedList<>();
-//        for (int i = 1; i < array.length; i += 2) {
-//            list.add(Integer.parseInt(array[i]));
-//        }
-//        Collections.reverse(list);
-//        list.forEach(number -> System.out.printf("%d ", number));
-
 
         Scanner scanToString = new Scanner(System.in);
         String str = scanToString.nextLine();
@@ -59,9 +45,6 @@ public class Task6214 {
         for (Integer i : array) {
             System.out.printf("%d ", i);
         }
-
-
-
 
     }
 
