@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div th:fragment="deleteModal">
+<div class="modal fade" id="deleteUserModal" tabindex="-1"
+     aria-labelledby="deleteModalLabel" role="dialog" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Delete user</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" aria-hidden="true">×</button>
+      </div>
+
+      <div class="modal-body">
+        <div class="form-group text-center">
+          <label for="deleteId">ID</label>
+          <input type="text" style="text-align: center" id="deleteId" class="form-control" readonly/>
+        </div>
+        <div class="form-group text-center">
+          <label for="deleteFirstName">First Name</label>
+          <input type="text" style="text-align: center" id="deleteFirstName" class="form-control" readonly/>
+        </div>
+        <div class="form-group text-center">
+          <label for="deleteLastName">Last Name</label>
+          <input type="text" style="text-align: center" id="deleteLastName" class="form-control" readonly/>
+        </div>
+        <div class="form-group text-center">
+          <label for="deleteAge">Age</label>
+          <input type="number" style="text-align: center" id="deleteAge" class="form-control" readonly/>
+        </div>
+        <div class="form-group text-center">
+          <label for="deleteEmail">E-mail</label>
+          <input type="text" style="text-align: center" id="deleteEmail" class="form-control" readonly>
+        </div>
+        <div class="form-group text-center">
+          <label for="deletePassword">Password</label>
+          <input type="password" style="text-align: center" id="deletePassword" class="form-control" readonly/>
+        </div>
+        <div class="form-group text-center">
+          <label for="deleteRoles">Roles</label>
+          <input type="text" style="text-align: center" id="deleteRoles" class="form-control" readonly/>
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-danger" onclick="deleteUser()">Delete</button>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+</body>
+</html>

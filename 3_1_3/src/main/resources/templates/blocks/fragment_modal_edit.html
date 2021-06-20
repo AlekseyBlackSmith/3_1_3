@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div th:fragment="editModal">
+    <div class="modal fade" id="editUserModal" tabindex="-1" aria-labelledby="editModalLabel" role="dialog" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Edit user</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" aria-hidden="true">×</button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group text-center">
+                        <label for="editID">ID</label>
+                        <input type="text" style="text-align:center" id="editId" class="form-control" readonly/>
+                    </div>
+                    <div class="form-group text-center">
+                        <label for="editFirstName">First Name</label>
+                        <input type="text" style="text-align:center" id="editFirstName" class="form-control"/>
+                    </div>
+                    <div class="form-group text-center">
+                        <label for="editLastName">Last Name</label>
+                        <input type="text" style="text-align: center" id="editLastName" class="form-control"/>
+                    </div>
+                    <div class="form-group text-center">
+                        <label for="editAge">Age</label>
+                        <input type="number" style="text-align: center" id="editAge" class="form-control"/>
+                    </div>
+                    <div class="form-group text-center">
+                        <label for="editEmail">E-mail</label>
+                        <input type="text" style="text-align: center" id="editEmail" class="form-control">
+                    </div>
+                    <div class="form-group text-center">
+                        <label for="editPassword">Password</label>
+                        <input type="password" style="text-align: center" id="editPassword" class="form-control"/>
+                    </div>
+                    <div class="form-group text-center">
+                        <label>Roles</label><br>
+                        <select style="text-align: center; width: 50%" multiple required size="2" id="editModalRoleSelector">
+                        </select>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" onclick="editUser()">Edit</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+</body>
+</html>
