@@ -1,4 +1,4 @@
-package app.springboot.entity;
+package app.springboot.model;
 
 import lombok.*;
 import org.springframework.security.core.GrantedAuthority;

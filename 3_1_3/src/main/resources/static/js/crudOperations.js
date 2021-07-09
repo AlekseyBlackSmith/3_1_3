@@ -2,7 +2,7 @@
 function rolesToString(roles) {
     let rolesAsString = '';
     roles.forEach((singleRole) => {
-        rolesAsString += singleRole.name + " ";
+        rolesAsString += `${singleRole.name} `;
     })
     return rolesAsString;
 }
@@ -21,10 +21,7 @@ function newUser() {
     let body = {}
     for (let i = 0; i < allOptions.length; i++) {
         if (allOptions[i].selected) {
-            rolesArray.push({
-                id: allOptions[i].id,
-                name: allOptions[i].value
-            })
+            rolesArray.push(allOptions[i].id)
         }
     }
     body = {
@@ -35,6 +32,7 @@ function newUser() {
         password: $("#newUserPassword").val(),
         roles: rolesArray
     }
+
     sendPost(requestURL, body)
         .then(() => {
             document.getElementById("allUsersTableFetch").innerHTML = ''
@@ -80,10 +78,7 @@ function editUser() {
     let allOptions = document.getElementById("editModalRoleSelector").options
     for (let i = 0; i < allOptions.length; i++) {
         if (allOptions[i].selected) {
-            rolesArray.push({
-                id: allOptions[i].id,
-                name: allOptions[i].value
-            })
+            rolesArray.push(allOptions[i].id)
         }
     }
     body = {
@@ -101,6 +96,10 @@ function editUser() {
             $('#tr' + userId).replaceWith(jsonToRow(body))
         })
         .then($("#editUserModal").modal('hide'))
+        .then(() => {
+        document.getElementById("allUsersTableFetch").innerHTML = ''
+        onStartup()
+    })
 }
 
 // Удаляем пользователя
@@ -116,7 +115,6 @@ function deleteUser() {
 
 // Админ панель: модальное окно удаления пользователя
 function deleteUserModal(userId) {
-    // let id = event.target.parentNode.parentNode.id;
     $("#deleteUserModal").modal('show');
     sendGet(requestURL + userId)
         .then(response => {

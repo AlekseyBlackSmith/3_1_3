@@ -1,9 +1,7 @@
 package app.springboot.service;
 
-import app.springboot.dao.RoleRepository;
-import app.springboot.dao.UserRepository;
-import app.springboot.entity.Role;
-import app.springboot.entity.User;
+import app.springboot.dao.UserDao;
+import app.springboot.model.User;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -13,39 +11,50 @@ import java.util.*;
 @Service
 @Transactional
 public class UserServiceImpl implements UserService {
-    private final UserRepository userRepository;
-    private final RoleRepository roleRepository;
+    private final UserDao userDao;
     private final BCryptPasswordEncoder passwordEncoder;
 
-    public UserServiceImpl(UserRepository userRepository, RoleRepository roleRepository, BCryptPasswordEncoder passwordEncoder) {
-        this.userRepository = userRepository;
-        this.roleRepository = roleRepository;
+    public UserServiceImpl(UserDao userDao, BCryptPasswordEncoder passwordEncoder) {
+        this.userDao = userDao;
         this.passwordEncoder = passwordEncoder;
     }
 
     @Override
-    public List<User> getAllUsers() {
-        return userRepository.findAll();
+    public void addUser(User user) {
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
+        userDao.addUser(user);
+    }
+
+    @Override
+    public void removeUserById(Long id) {
+        userDao.removeUserById(id);
+    }
+
+    @Override
+    public void updateUser(User user) {
+        if (!user.getPassword().equals(userDao.getUserById(user.getId()).getPassword())) {
+            user.setPassword(passwordEncoder.encode(user.getPassword()));
+        }
+        userDao.updateUser(user);
     }
 
     @Override
     public User getUserById(Long id) {
-        return userRepository.findById(id).get();
+        return userDao.getUserById(id);
     }
 
     @Override
-    public void saveUser(User user) {
-        user.setPassword(passwordEncoder.encode(user.getPassword()));
-        userRepository.save(user);
+    public User getUserByEmailWithRoles(String email) {
+        return userDao.getUserByUsernameWithRoles(email);
     }
 
     @Override
-    public User findUserByEmail(String email) {
-        return userRepository.findUserByUsername(email);
+    public List<User> getAllUsers() {
+        return userDao.getAllUsers();
     }
 
     @Override
-    public void deleteUser(Long id) {
-        userRepository.deleteById(id);
+    public User getUserByIdWithRoles(Long id) {
+        return userDao.getUserByIdWithRoles(id);
     }
 }

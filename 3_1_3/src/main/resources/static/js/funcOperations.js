@@ -2,16 +2,16 @@
 function jsonToRow(jsonObject) {
 
     let newRow =
-        "<tr id='tr"+jsonObject.id+"'>" +
-        "<td>" + jsonObject.id + "</td>" +
-        "<td>" + jsonObject.firstName + "</td>" +
-        "<td>" + jsonObject.lastName + "</td>" +
-        "<td>" + jsonObject.age + "</td>" +
-        "<td>" + jsonObject.username + "</td>" +
-        "<td>" + rolesToString(jsonObject.roles) + "</td>" +
-        "<td><button class='btn btn-info eBtn' data-toggle='modal' onclick='editUserModal("+jsonObject.id+")'>Edit</button></td>" +
-        "<td><button class='btn btn-danger eBtn' data-toggle='modal' onclick='deleteUserModal("+jsonObject.id+")' id='deleteButton'>Delete</button></td>"+
-        "</tr>";
+        `<tr id='tr${jsonObject.id}'>
+            <td>${jsonObject.id}</td>
+            <td>${jsonObject.firstName}</td>
+            <td>${jsonObject.lastName}</td>
+            <td>${jsonObject.age}</td>
+            <td>${jsonObject.username}</td>
+            <td>${rolesToString(jsonObject.roles)}</td>
+            <td><button class='btn btn-info eBtn' data-toggle='modal' onclick='editUserModal(${jsonObject.id})'>Edit</button></td>
+            <td><button class='btn btn-danger eBtn' data-toggle='modal' onclick='deleteUserModal(${jsonObject.id})' id='deleteButton'>Delete</button></td>
+        </tr>`;
     return newRow;
 }
 
@@ -21,7 +21,6 @@ function fetchUsersToTable(data) {
     usersTable = document.getElementById("allUsersTableFetch")
     data.forEach((dataItem) => {
         usersTable.insertAdjacentHTML('beforeend', jsonToRow(dataItem))
-        // usersTable.append(jsonToRow(dataItem))
     })
 }
 
@@ -31,12 +30,12 @@ function fetchYourselfToTable(data) {
     singleUserTable.innerHTML = ''
     let userRow = document.createElement("tr");
     userRow.innerHTML =
-        "<td>" + data.id + "</td>" +
-        "<td>" + data.firstName + "</td>" +
-        "<td>" + data.lastName + "</td>" +
-        "<td>" + data.age + "</td>" +
-        "<td>" + data.username + "</td>" +
-        "<td>" + rolesToString(data.roles) + "</td>";
+       `<td>${data.id}</td>
+        <td>${data.firstName}</td>
+        <td>${data.lastName}</td>
+        <td>${data.age}</td>
+        <td>${data.username}</td>
+        <td>${rolesToString(data.roles)}</td>`
     singleUserTable.append(userRow)
 }
 
@@ -60,15 +59,10 @@ function onStartup() {
             roleOptions = '';
             sendGet(requestURL + 'roles').then(response => {
                 response.forEach((role) => {
-                    roleOptions += "<option id="
-                    roleOptions += role.id
-                    roleOptions += " class=\"optionItem"
-                    roleOptions += role.id
-                    roleOptions += "\">"
-                    roleOptions += role.name
-                    roleOptions += "</option>"
+                    roleOptions += `<option id="${role.id}" class="optionItem${role.id}">${role.name}</option>`
                 })
             })
+
             // Отрисовка и заполнение статус-бара
             sendGet(requestURL + 'current').then(response => {
                 let headerInfoLine = document.getElementById("headerInfoLine");
@@ -76,8 +70,8 @@ function onStartup() {
                 let headerBlock = document.createElement("div")
                 headerBlock.className = "row"
                 headerBlock.innerHTML =
-                    "<div class='col-md-9 text-left bg-dark text-light align-middle pt-2'>" + response.username + ' with roles: ' + rolesToString(response.roles) + "</div>" +
-                    "<div class='col-md-3 text-right bg-dark'><form method='POST' action='/logout'><button class='btn btn-link text-muted text-decoration-none' type='submit'>Logout</button></form></div>";
+                    `<div class='col-md-9 text-left bg-dark text-light align-middle pt-2'>${response.username} with roles: ${rolesToString(response.roles)}</div>
+                    <div class='col-md-3 text-right bg-dark'><form method='POST' action='/logout'><button class='btn btn-link text-muted text-decoration-none' type='submit'>Logout</button></form></div>`;
                 headerInfoLine.append(headerBlock)
             })
         })
